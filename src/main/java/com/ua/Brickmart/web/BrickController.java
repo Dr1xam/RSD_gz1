@@ -4,6 +4,7 @@ import com.ua.Brickmart.service.BrickService;
 import com.ua.Brickmart.web.dto.BrickCardDto;
 import com.ua.Brickmart.web.dto.BrickDetailDto;
 import com.ua.Brickmart.web.dto.BrickRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,12 +33,12 @@ public class BrickController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BrickDetailDto create(@RequestBody BrickRequest request) {
+    public BrickDetailDto create(@Valid @RequestBody BrickRequest request) {
         return brickService.create(request);
     }
 
     @PutMapping("/{id}")
-    public BrickDetailDto update(@PathVariable Long id, @RequestBody BrickRequest request) {
+    public BrickDetailDto update(@PathVariable Long id, @Valid @RequestBody BrickRequest request) {
         return brickService.update(id, request);
     }
 
